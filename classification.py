@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-'''
-Student ID: U1951212
-'''
 import testsets
 import evaluation
 import pandas as pd
@@ -18,7 +15,6 @@ from tensorflow import keras, argmax
 from keras.preprocessing import text, sequence
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder, LabelBinarizer
 
-# TODO: load training data
 # Read training data
 train_data = pd.read_csv('twitter-training-data.txt', sep='\\t', names=['tweet_id','sentiment','tweet_text'])
 print("Training data has been read.")
@@ -63,26 +59,26 @@ print("Data preprocessing complete.")
 for classifier in ['MaxEnt', 'NaiveBayes', 'SVC', 'LSTM']: # You may rename the names of the classifiers to something more descriptive
     if classifier == 'MaxEnt':
         print('Training ' + classifier)
-        # TODO: extract features for training classifier1
+        # extract features for training classifier1
         vectorizer = CountVectorizer(strip_accents='unicode', stop_words=stopset) # Count Vectorizer
         train_X = vectorizer.fit_transform(train_data.tweet_text)
-        # TODO: train sentiment classifier1
+        # train sentiment classifier1
         clf = linear_model.LogisticRegression(multi_class = 'ovr')
         clf.fit(train_X, train_y)
     elif classifier == 'NaiveBayes':
         print('Training ' + classifier)
-        # TODO: extract features for training classifier2
+        # extract features for training classifier2
         vectorizer = TfidfVectorizer(use_idf=True, strip_accents='unicode', stop_words=stopset) # TFIDF Vectorizer
         train_X = vectorizer.fit_transform(train_data.tweet_text)
-        # TODO: train sentiment classifier2
+        # train sentiment classifier2
         clf = naive_bayes.BernoulliNB()
         clf.fit(train_X, train_y)
     elif classifier == 'SVC':
         print('Training ' + classifier)
-        # TODO: extract features for training classifier3
+        # extract features for training classifier3
         vectorizer = TfidfVectorizer(use_idf=True, strip_accents='unicode', stop_words=stopset) # TFIDF Vectorizer
         train_X = vectorizer.fit_transform(train_data.tweet_text)
-        # TODO: train sentiment classifier3
+        # train sentiment classifier3
         clf = svm.LinearSVC(multi_class='crammer_singer')
         clf.fit(train_X, train_y)
     elif classifier == 'LSTM':
